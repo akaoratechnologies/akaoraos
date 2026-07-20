@@ -1,0 +1,1139 @@
+
+:root{--text:#f5f5f7;--muted:rgba(245,245,247,.66);--panel:rgba(14,16,22,.68);--line:rgba(255,255,255,.1)}
+*{box-sizing:border-box}
+html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#0c0d10;color:var(--text);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.06);border-radius:14px;padding:9px 12px}
+button:hover{background:rgba(255,255,255,.1)}
+.primary{background:linear-gradient(135deg,#0a84ff,#af52de)!important;border:0!important}
+.hidden{display:none!important}
+.boot{width:100vw;height:100vh;display:grid;place-items:center;align-content:center;gap:12px;background:#0c0d10}
+.boot img{width:86px;height:86px;border-radius:26px}.boot h1{margin:0;font-size:56px;letter-spacing:-.07em}.boot p{margin:0;color:var(--muted)}
+.os{position:relative;width:100vw;height:100vh;overflow:hidden;background:url("../assets/wallpaper.png") center/cover no-repeat}
+.os::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.34));pointer-events:none}
+.menubar{position:absolute;top:0;left:0;right:0;height:42px;z-index:2000;display:flex;align-items:center;justify-content:space-between;padding:0 14px;background:rgba(8,10,14,.72);border-bottom:1px solid rgba(255,255,255,.08);backdrop-filter:blur(18px)}
+.menu-left,.menu-right{display:flex;align-items:center;gap:10px;font-size:13px}
+.akaora-top-btn{display:flex;align-items:center;gap:8px;background:transparent;border:0;font-weight:900}.akaora-top-btn img{width:22px;height:22px;border-radius:7px}
+.menu-action{background:transparent;border:0;padding:7px 9px}.menu-action:hover,.menu-action.active{background:rgba(255,255,255,.1)}
+.desktop{position:absolute;inset:42px 0 0 0;overflow:hidden}
+.widgets{position:absolute;left:34px;top:72px;width:min(430px,calc(100vw - 70px));display:grid;gap:16px;z-index:10}
+.widget{width:100%;border-radius:28px;padding:20px;background:linear-gradient(135deg,rgba(255,255,255,.1),rgba(255,255,255,.035)),var(--panel);border:1px solid var(--line);box-shadow:0 18px 54px rgba(0,0,0,.32);backdrop-filter:blur(18px)}
+.clock-widget{display:grid;grid-template-columns:88px 1fr;align-items:center;gap:18px}.clock-widget strong{font-size:42px;letter-spacing:-.06em}.widget-kicker{font-size:11px;font-weight:900;color:var(--muted)}.widget p{margin:4px 0 0;color:var(--muted)}
+.clock-face{width:78px;height:78px;border-radius:50%;background:radial-gradient(circle,#111827,#05070d);border:1px solid rgba(255,255,255,.18)}
+.widget-title{font-weight:900;display:flex;justify-content:space-between}.focus-row,.water-mini{display:flex;align-items:center;gap:14px}.focus-ring{width:52px;height:52px;border-radius:50%;background:conic-gradient(#0a84ff 70%,#af52de 0)}
+.glass-mini{width:42px;height:62px;border-radius:12px 12px 18px 18px;border:2px solid #64d2ff;position:relative;overflow:hidden}.glass-mini i{position:absolute;left:0;right:0;bottom:0;height:0;background:#0a84ff}
+.window-layer{position:absolute;inset:50px 20px 90px 20px;z-index:20;pointer-events:none}
+.app-window{position:absolute;left:70px;top:70px;width:var(--win-w,720px);height:var(--win-h,520px);min-width:360px;min-height:280px;max-width:calc(100vw - 30px);max-height:calc(100vh - 70px);border-radius:26px;overflow:hidden;background:rgba(14,16,22,.76);border:1px solid rgba(255,255,255,.1);box-shadow:0 26px 80px rgba(0,0,0,.42);backdrop-filter:blur(18px);pointer-events:auto}
+.app-window.maximized{position:fixed!important;left:0!important;top:42px!important;width:100vw!important;height:calc(100vh - 42px)!important;max-width:none!important;max-height:none!important;border-radius:0!important;z-index:999999!important}
+.window-head{height:52px;display:grid;grid-template-columns:84px 1fr 28px;align-items:center;padding:0 12px;background:rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.08);cursor:grab}
+.window-controls{display:flex;gap:8px}.control-btn{width:13px;height:13px;border-radius:50%;border:0;padding:0}.control-close{background:#ff5f57}.control-min{background:#febc2e}.control-max{background:#28c840}
+.window-title{text-align:center;font-weight:900;font-size:13px}.window-title img{width:20px;height:20px;border-radius:6px;vertical-align:middle;margin-right:7px}
+.window-body{height:calc(100% - 52px);padding:14px;overflow:auto}.resize-grip{position:absolute;right:0;bottom:0;width:28px;height:28px;cursor:nwse-resize;z-index:5}.resize-grip::before{content:"";position:absolute;right:8px;bottom:8px;width:14px;height:14px;border-right:3px solid #64d2ff;border-bottom:3px solid #64d2ff}
+.dock{position:absolute;left:50%;bottom:10px;transform:translateX(-50%);z-index:1200;display:flex;gap:7px;padding:6px 10px;border-radius:22px;background:rgba(18,20,26,.72);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(18px);box-shadow:0 18px 55px rgba(0,0,0,.38);max-width:calc(100vw - 20px);overflow-x:auto}
+.dock-item{width:52px;min-width:52px;min-height:54px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:4px;border:0;background:transparent}.dock-item i{width:36px;height:36px}.dock-item img{width:100%;height:100%;border-radius:13px;object-fit:cover}.dock-item span{font-size:8px;font-weight:800;max-width:52px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.launch-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(94px,1fr));gap:16px}.launch-grid button{min-height:108px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px}.launch-grid img{width:58px;height:58px;border-radius:18px}.launch-grid span{font-size:12px;font-weight:900}
+.todo-app-clean,.notepad-pro,.paint-shell,.study-pro,.image-studio,.settings-pro{height:100%}
+.todo-top,.note-toolbar,.paint-toolbar,.study-toolbar,.studio-topbar{display:flex;flex-wrap:wrap;gap:8px;padding:10px;border-radius:18px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);margin-bottom:12px}
+.todo-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}.todo-stat,.file-card,.settings-card,.control-card{padding:14px;border-radius:18px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08)}
+.todo-grid{display:grid;gap:10px}.todo-item{display:grid;grid-template-columns:28px 1fr auto;gap:10px;align-items:center;padding:12px;border-radius:16px;background:rgba(255,255,255,.05)}.todo-item.done .todo-title{text-decoration:line-through;opacity:.55}
+.note-editor{height:calc(100% - 62px);min-height:360px;padding:20px;border-radius:22px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08);outline:0;overflow:auto}
+.paint-shell{display:grid;grid-template-rows:auto 1fr;gap:10px}.paint-toolbar{max-height:118px;overflow:auto}.paint-stage{height:100%;min-height:280px;border-radius:22px;background:#fff;overflow:hidden}#paintCanvas{width:100%;height:100%;display:block;background:#fff;cursor:crosshair}
+.study-pro,.image-studio,.settings-pro{display:grid;grid-template-columns:180px 1fr;gap:14px}.study-sidebar,.image-studio-sidebar,.settings-sidebar{display:grid;align-content:start;gap:8px;padding:10px;border-radius:20px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08)}
+.study-panel,.settings-panel{display:none}.study-panel.active,.settings-panel.active{display:block}.study-viewer,.studio-workspace{height:calc(100% - 60px);min-height:360px;border-radius:22px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08);overflow:auto;padding:14px}.study-viewer iframe,.study-viewer video,.studio-workspace canvas,.studio-workspace img{max-width:100%;max-height:100%;border-radius:16px}
+.image-studio{grid-template-columns:280px 1fr}.studio-controls{display:grid;gap:10px}.bg-preview{min-height:380px}.compare-wrap{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.calc-shell{max-width:340px;margin:auto}.calc-display{min-height:92px;border-radius:28px;padding:18px;text-align:right;background:rgba(255,255,255,.06);font-size:48px}.calc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.calc-grid button{border-radius:50%;width:68px;height:68px;font-size:24px}.calc-grid .op{background:#ff9f0a!important}.calc-grid .top{background:#a5a5a5!important;color:#111}
+.chat-box{height:320px;overflow:auto;display:grid;gap:8px}.msg{padding:10px 12px;border-radius:14px;background:rgba(255,255,255,.06)}.msg.user{background:rgba(10,132,255,.25);justify-self:end}.msg.bot{justify-self:start}
+.top-menu-layer{position:fixed;top:40px;left:0;z-index:99999}.menu-dropdown{position:absolute;min-width:210px;padding:8px;border-radius:16px;background:rgba(8,12,22,.94);border:1px solid rgba(255,255,255,.12);box-shadow:0 24px 80px rgba(0,0,0,.45)}.menu-dropdown button{width:100%;display:flex;justify-content:space-between;background:transparent;border:0}.menu-separator{height:1px;margin:6px;background:rgba(255,255,255,.1)}
+body.light-theme{background:#f5f5f7;color:#15161a}body.light-theme .app-window,body.light-theme .widget,body.light-theme .dock,body.light-theme .menubar{background:rgba(255,255,255,.78)!important;color:#15161a!important}
+@media(max-width:900px){.widgets{left:12px;right:12px;width:auto;top:58px}.window-layer{inset:260px 10px 80px 10px}.app-window{left:0!important;top:0!important;width:calc(100vw - 20px)!important;height:calc(100vh - 350px)!important;min-width:0}.study-pro,.image-studio,.settings-pro{grid-template-columns:1fr}.dock-item span{display:none}.dock-item{width:44px;min-width:44px}.launch-grid{grid-template-columns:repeat(3,1fr)}}
+
+
+/* ===== Final UI Color Consistency ===== */
+:root{
+  --akaora-bg:#0c0d10;
+  --akaora-card:rgba(14,16,22,.70);
+  --akaora-card-soft:rgba(255,255,255,.052);
+  --akaora-line:rgba(255,255,255,.09);
+  --akaora-blue:#0a84ff;
+  --akaora-purple:#af52de;
+  --akaora-orange:#ff9f0a;
+  --akaora-text:#f5f5f7;
+  --akaora-muted:rgba(245,245,247,.64);
+}
+
+.app-window,
+.widget,
+.dock,
+.menubar,
+.todo-stat,
+.file-card,
+.settings-card,
+.control-card,
+.todo-top,
+.note-toolbar,
+.paint-toolbar,
+.study-toolbar,
+.studio-topbar,
+.study-sidebar,
+.image-studio-sidebar,
+.settings-sidebar{
+  background:linear-gradient(135deg, rgba(255,255,255,.075), rgba(255,255,255,.028)), var(--akaora-card)!important;
+  border-color:var(--akaora-line)!important;
+}
+
+input, select, textarea, .note-editor{
+  background:rgba(255,255,255,.055)!important;
+  border:1px solid var(--akaora-line)!important;
+  color:var(--akaora-text)!important;
+}
+
+button.primary,
+.focus-modes button:hover,
+.settings-tab.active,
+.study-tab.active{
+  background:linear-gradient(135deg,var(--akaora-blue),var(--akaora-purple))!important;
+  color:#fff!important;
+  border:0!important;
+}
+
+button{
+  border-color:var(--akaora-line)!important;
+}
+
+.window-title,
+.todo-title,
+.widget-title,
+strong{
+  color:var(--akaora-text)!important;
+}
+
+p, small, .widget p{
+  color:var(--akaora-muted)!important;
+}
+
+/* ===== Final Focus App Design ===== */
+.app-window[data-app-window="focus"]:not(.maximized){
+  --win-w: 680px!important;
+  --win-h: 600px!important;
+}
+
+.focus-app-pro{
+  height:100%;
+  display:grid;
+  align-content:center;
+  gap:18px;
+}
+
+.focus-hero{
+  display:grid;
+  place-items:center;
+  padding:12px;
+}
+
+.focus-orbit{
+  width:260px;
+  height:260px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:
+    conic-gradient(from 180deg, var(--akaora-blue), var(--akaora-purple), var(--akaora-orange), var(--akaora-blue));
+  box-shadow:0 28px 80px rgba(10,132,255,.22);
+  position:relative;
+}
+
+.focus-orbit::before{
+  content:"";
+  position:absolute;
+  inset:10px;
+  border-radius:50%;
+  background:rgba(12,13,16,.92);
+}
+
+.focus-core{
+  position:relative;
+  width:210px;
+  height:210px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  align-content:center;
+  gap:8px;
+  background:
+    radial-gradient(circle at 50% 20%, rgba(255,255,255,.10), transparent 45%),
+    rgba(255,255,255,.045);
+  border:1px solid rgba(255,255,255,.10);
+}
+
+.focus-core strong{
+  font-size:48px;
+  letter-spacing:-.06em;
+  font-variant-numeric:tabular-nums;
+}
+
+.focus-core span{
+  color:var(--akaora-muted);
+  font-weight:900;
+  font-size:13px;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+
+.focus-modes{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+}
+
+.focus-modes button{
+  min-height:46px;
+  font-weight:900;
+}
+
+.custom-timer{
+  display:grid;
+  grid-template-columns:1fr 1fr auto;
+  gap:10px;
+}
+
+.focus-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:10px;
+}
+
+.focus-actions button{
+  min-height:46px;
+  font-weight:900;
+}
+
+/* Final responsive */
+@media(max-width:760px){
+  .focus-orbit{
+    width:220px;
+    height:220px;
+  }
+  .focus-core{
+    width:178px;
+    height:178px;
+  }
+  .focus-core strong{
+    font-size:38px;
+  }
+  .focus-modes,
+  .custom-timer,
+  .focus-actions{
+    grid-template-columns:1fr;
+  }
+}
+
+
+/* ===== Final Fixes: Scrollbar + Dropdown + Tools ===== */
+*{
+  scrollbar-width:thin;
+  scrollbar-color:rgba(100,210,255,.62) rgba(255,255,255,.04);
+}
+*::-webkit-scrollbar{width:10px;height:10px}
+*::-webkit-scrollbar-track{
+  background:rgba(255,255,255,.035);
+  border-radius:999px;
+}
+*::-webkit-scrollbar-thumb{
+  background:linear-gradient(180deg,var(--akaora-blue),var(--akaora-purple));
+  border-radius:999px;
+  border:2px solid rgba(14,16,22,.85);
+}
+*::-webkit-scrollbar-thumb:hover{
+  background:linear-gradient(180deg,#64d2ff,#c77dff);
+}
+*::-webkit-scrollbar-corner{background:transparent}
+
+.menu-dropdown{
+  background:linear-gradient(135deg, rgba(255,255,255,.085), rgba(255,255,255,.035)), rgba(14,16,22,.94)!important;
+  border:1px solid var(--akaora-line)!important;
+  color:var(--akaora-text)!important;
+  backdrop-filter:blur(20px) saturate(140%)!important;
+}
+.menu-dropdown button{
+  color:var(--akaora-text)!important;
+  border-radius:12px!important;
+}
+.menu-dropdown button:hover{
+  background:linear-gradient(135deg, rgba(10,132,255,.22), rgba(175,82,222,.18))!important;
+}
+.menu-separator{background:var(--akaora-line)!important}
+
+/* Calculator repaired + iOS look */
+.app-window[data-app-window="calculator"]:not(.maximized){
+  --win-w:360px!important;
+  --win-h:570px!important;
+}
+.calc-shell{
+  max-width:330px!important;
+  margin:auto!important;
+  display:grid!important;
+  gap:12px!important;
+}
+.calc-display{
+  min-height:94px!important;
+  border-radius:28px!important;
+  display:flex!important;
+  align-items:flex-end!important;
+  justify-content:flex-end!important;
+  padding:18px!important;
+  font-size:46px!important;
+  font-weight:850!important;
+  letter-spacing:-.06em!important;
+  overflow:hidden!important;
+}
+.calc-grid{
+  grid-template-columns:repeat(4, 1fr)!important;
+  gap:10px!important;
+}
+.calc-grid button{
+  width:68px!important;
+  height:68px!important;
+  min-height:68px!important;
+  border-radius:50%!important;
+  font-size:23px!important;
+  font-weight:850!important;
+}
+.calc-grid button.zero{
+  grid-column:span 2!important;
+  width:auto!important;
+  border-radius:999px!important;
+  justify-content:flex-start!important;
+  padding-left:26px!important;
+}
+
+/* Professional Image Studio layout */
+.app-window[data-app-window="imagestudio"]:not(.maximized){
+  --win-w:1080px!important;
+  --win-h:720px!important;
+}
+.image-studio{
+  grid-template-columns:260px 1fr!important;
+  gap:14px!important;
+}
+.image-studio-sidebar{
+  border-radius:26px!important;
+  padding:14px!important;
+  background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.035))!important;
+}
+.image-studio-main{
+  display:grid!important;
+  grid-template-rows:auto 1fr!important;
+  gap:12px!important;
+  min-width:0!important;
+}
+.studio-topbar{
+  margin-bottom:0!important;
+  justify-content:space-between!important;
+}
+.studio-workspace{
+  height:100%!important;
+  min-height:0!important;
+  display:grid!important;
+  place-items:center!important;
+  overflow:hidden!important;
+  padding:16px!important;
+  border-radius:28px!important;
+  background:
+    radial-gradient(circle at 50% 10%, rgba(10,132,255,.10), transparent 35%),
+    linear-gradient(45deg, rgba(255,255,255,.055) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(255,255,255,.055) 25%, transparent 25%),
+    rgba(255,255,255,.032)!important;
+  background-size:auto,26px 26px,26px 26px,auto!important;
+}
+.studio-workspace canvas,
+.studio-workspace img{
+  max-width:100%!important;
+  max-height:100%!important;
+  object-fit:contain!important;
+  box-shadow:0 22px 60px rgba(0,0,0,.22);
+}
+.image-studio-sidebar button,
+.image-studio-sidebar input{
+  width:100%!important;
+}
+.image-studio-sidebar .row{
+  display:grid!important;
+  grid-template-columns:1fr 1fr!important;
+}
+
+/* Quick Tools */
+.app-window[data-app-window="quicktools"]:not(.maximized){
+  --win-w:760px!important;
+  --win-h:560px!important;
+}
+.quick-tools{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+}
+.tool-card{
+  padding:16px;
+  border-radius:22px;
+  background:linear-gradient(135deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+  border:1px solid var(--akaora-line);
+  display:grid;
+  gap:10px;
+}
+.tool-card h3{margin:0;font-size:16px}
+.tool-result{
+  min-height:44px;
+  padding:10px;
+  border-radius:14px;
+  background:rgba(255,255,255,.055);
+  word-break:break-word;
+}
+@media(max-width:800px){
+  .quick-tools,.image-studio{grid-template-columns:1fr!important}
+}
+
+
+/* ===== Light Mode Full Visibility Fix ===== */
+body.light-theme{
+  --akaora-bg:#f5f7fb;
+  --akaora-card:rgba(255,255,255,.82);
+  --akaora-card-soft:rgba(0,0,0,.035);
+  --akaora-line:rgba(0,0,0,.12);
+  --akaora-text:#111318;
+  --akaora-muted:rgba(17,19,24,.62);
+  color:#111318!important;
+}
+
+body.light-theme .os::before{
+  background:linear-gradient(180deg,rgba(255,255,255,.35),rgba(255,255,255,.58))!important;
+}
+
+body.light-theme .menubar,
+body.light-theme .widget,
+body.light-theme .app-window,
+body.light-theme .dock,
+body.light-theme .todo-stat,
+body.light-theme .file-card,
+body.light-theme .settings-card,
+body.light-theme .control-card,
+body.light-theme .todo-top,
+body.light-theme .note-toolbar,
+body.light-theme .paint-toolbar,
+body.light-theme .study-toolbar,
+body.light-theme .studio-topbar,
+body.light-theme .study-sidebar,
+body.light-theme .image-studio-sidebar,
+body.light-theme .settings-sidebar,
+body.light-theme .menu-dropdown{
+  background:rgba(255,255,255,.86)!important;
+  color:#111318!important;
+  border-color:rgba(0,0,0,.12)!important;
+}
+
+body.light-theme input,
+body.light-theme select,
+body.light-theme textarea,
+body.light-theme .note-editor,
+body.light-theme .study-viewer,
+body.light-theme .studio-workspace,
+body.light-theme .msg,
+body.light-theme .tool-result{
+  background:rgba(0,0,0,.045)!important;
+  color:#111318!important;
+  border-color:rgba(0,0,0,.12)!important;
+}
+
+body.light-theme .window-title,
+body.light-theme .todo-title,
+body.light-theme .widget-title,
+body.light-theme strong,
+body.light-theme button,
+body.light-theme .menu-dropdown button{
+  color:#111318!important;
+}
+
+body.light-theme p,
+body.light-theme small,
+body.light-theme .widget p,
+body.light-theme .focus-core span{
+  color:rgba(17,19,24,.64)!important;
+}
+
+body.light-theme button.primary,
+body.light-theme .primary{
+  color:#fff!important;
+}
+
+/* ===== Clock App ===== */
+.app-window[data-app-window="clockapp"]:not(.maximized){
+  --win-w:760px!important;
+  --win-h:620px!important;
+}
+
+.clock-app{
+  height:100%;
+  display:grid;
+  grid-template-columns:180px 1fr;
+  gap:14px;
+}
+
+.clock-sidebar{
+  display:grid;
+  align-content:start;
+  gap:8px;
+  padding:10px;
+  border-radius:22px;
+  background:var(--akaora-card-soft);
+  border:1px solid var(--akaora-line);
+}
+
+.clock-tab.active{
+  background:linear-gradient(135deg,var(--akaora-blue),var(--akaora-purple))!important;
+  color:#fff!important;
+}
+
+.clock-panel{display:none}
+.clock-panel.active{display:grid;gap:14px}
+
+.clock-big{
+  display:grid;
+  place-items:center;
+  min-height:260px;
+  border-radius:28px;
+  background:radial-gradient(circle at 50% 20%,rgba(10,132,255,.22),transparent 45%),var(--akaora-card-soft);
+  border:1px solid var(--akaora-line);
+}
+
+.clock-big strong{
+  font-size:64px;
+  letter-spacing:-.07em;
+  font-variant-numeric:tabular-nums;
+}
+
+.clock-controls,
+.alarm-row,
+.world-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  align-items:center;
+}
+
+.clock-list{
+  display:grid;
+  gap:10px;
+}
+
+.clock-card{
+  padding:14px;
+  border-radius:18px;
+  background:var(--akaora-card-soft);
+  border:1px solid var(--akaora-line);
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+}
+
+/* popout timer */
+.popout-timer{
+  position:fixed;
+  right:18px;
+  top:72px;
+  z-index:9999999;
+  padding:16px 18px;
+  border-radius:24px;
+  background:rgba(14,16,22,.9);
+  color:#fff;
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:0 24px 80px rgba(0,0,0,.4);
+  backdrop-filter:blur(20px);
+}
+
+.popout-timer strong{
+  font-size:34px;
+  font-variant-numeric:tabular-nums;
+}
+
+/* ===== Weather App ===== */
+.app-window[data-app-window="weather"]:not(.maximized){
+  --win-w:760px!important;
+  --win-h:560px!important;
+}
+
+.weather-app{
+  height:100%;
+  display:grid;
+  gap:14px;
+}
+
+.weather-hero{
+  padding:24px;
+  border-radius:30px;
+  background:radial-gradient(circle at 20% 10%,rgba(100,210,255,.24),transparent 40%),linear-gradient(135deg,rgba(255,255,255,.10),rgba(255,255,255,.035));
+  border:1px solid var(--akaora-line);
+  display:grid;
+  grid-template-columns:1fr auto;
+  align-items:center;
+  gap:14px;
+}
+
+.weather-temp{
+  font-size:72px;
+  line-height:1;
+  font-weight:950;
+  letter-spacing:-.08em;
+}
+
+.weather-icon{
+  font-size:80px;
+}
+
+.weather-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+
+.weather-card{
+  padding:16px;
+  border-radius:20px;
+  background:var(--akaora-card-soft);
+  border:1px solid var(--akaora-line);
+}
+
+.forecast-row{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:10px;
+}
+
+.forecast-day{
+  text-align:center;
+  padding:12px;
+  border-radius:18px;
+  background:var(--akaora-card-soft);
+  border:1px solid var(--akaora-line);
+}
+
+@media(max-width:800px){
+  .clock-app{grid-template-columns:1fr}
+  .weather-grid,.forecast-row{grid-template-columns:1fr 1fr}
+  .weather-temp{font-size:56px}
+}
+
+
+/* ===== Notifications ===== */
+.akaora-notification{
+  position:fixed;
+  right:22px;
+  bottom:26px;
+  width:min(360px, calc(100vw - 28px));
+  padding:16px 18px;
+  border-radius:24px;
+  background:linear-gradient(135deg, rgba(10,132,255,.22), rgba(175,82,222,.18)), rgba(14,16,22,.92);
+  border:1px solid rgba(255,255,255,.12);
+  color:#fff;
+  z-index:99999999;
+  transform:translateY(120%);
+  opacity:0;
+  transition:all .35s ease;
+  backdrop-filter:blur(20px);
+  box-shadow:0 24px 80px rgba(0,0,0,.35);
+}
+
+.akaora-notification.show{
+  transform:translateY(0);
+  opacity:1;
+}
+
+.akaora-notification strong{
+  display:block;
+  margin-bottom:4px;
+  font-size:15px;
+}
+
+.akaora-notification p{
+  margin:0;
+  color:rgba(255,255,255,.78)!important;
+}
+
+/* ===== AI Mind Mode ===== */
+.app-window[data-app-window="aimode"]:not(.maximized){
+  --win-w:760px!important;
+  --win-h:560px!important;
+}
+
+.ai-mind-app{
+  height:100%;
+  display:grid;
+  align-content:start;
+  gap:18px;
+}
+
+.mind-hero{
+  padding:28px;
+  border-radius:32px;
+  background:
+    radial-gradient(circle at 20% 10%, rgba(10,132,255,.24), transparent 40%),
+    radial-gradient(circle at 80% 90%, rgba(175,82,222,.18), transparent 35%),
+    linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+  border:1px solid rgba(255,255,255,.10);
+  min-height:260px;
+  display:grid;
+  align-content:center;
+  gap:10px;
+}
+
+.mind-hero span{
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.14em;
+  color:rgba(255,255,255,.66);
+}
+
+.mind-hero strong{
+  font-size:40px;
+  line-height:1.1;
+  letter-spacing:-.06em;
+  max-width:760px;
+}
+
+.mind-hero p{
+  max-width:520px;
+}
+
+.mind-actions{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+
+.mind-actions button{
+  min-height:48px;
+  font-weight:900;
+}
+
+.mind-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+
+.mind-card{
+  padding:18px;
+  border-radius:24px;
+  background:rgba(255,255,255,.045);
+  border:1px solid rgba(255,255,255,.08);
+}
+
+.mind-card h3{
+  margin-top:0;
+}
+
+@media(max-width:780px){
+  .mind-actions,
+  .mind-grid{
+    grid-template-columns:1fr;
+  }
+
+  .mind-hero strong{
+    font-size:30px;
+  }
+}
+
+
+/* ===== Water Intake App ===== */
+.app-window[data-app-window="water"]:not(.maximized){
+  --win-w:720px!important;
+  --win-h:580px!important;
+}
+
+.water-app-pro{
+  height:100%;
+  display:grid;
+  align-content:start;
+  gap:16px;
+}
+
+.water-hero{
+  display:grid;
+  grid-template-columns:160px 1fr;
+  gap:20px;
+  align-items:center;
+  padding:22px;
+  border-radius:30px;
+  background:radial-gradient(circle at 10% 10%,rgba(100,210,255,.26),transparent 40%),linear-gradient(135deg,rgba(255,255,255,.09),rgba(255,255,255,.03));
+  border:1px solid var(--akaora-line);
+}
+
+.water-glass-big{
+  height:220px;
+  width:120px;
+  border-radius:28px 28px 44px 44px;
+  border:3px solid rgba(100,210,255,.75);
+  overflow:hidden;
+  position:relative;
+  background:rgba(100,210,255,.08);
+}
+
+.water-glass-big i{
+  position:absolute;
+  left:0;right:0;bottom:0;
+  height:0%;
+  background:linear-gradient(180deg,#64d2ff,#0a84ff);
+  transition:.3s ease;
+}
+
+.water-hero span,
+.workout-hero span{
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.12em;
+  color:var(--akaora-muted);
+}
+
+.water-hero strong{
+  display:block;
+  font-size:52px;
+  letter-spacing:-.07em;
+}
+
+.water-progress{
+  height:10px;
+  border-radius:999px;
+  background:rgba(255,255,255,.08);
+  overflow:hidden;
+  margin-top:12px;
+}
+
+.water-progress i{
+  display:block;
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,var(--akaora-blue),#64d2ff);
+}
+
+.water-actions{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+}
+
+.water-settings{
+  display:grid;
+  grid-template-columns:1fr auto auto;
+  gap:10px;
+}
+
+.water-tip{
+  padding:14px;
+  border-radius:18px;
+  background:rgba(255,255,255,.045);
+  border:1px solid var(--akaora-line);
+}
+
+/* ===== AI Workout Trainer ===== */
+.app-window[data-app-window="workout"]:not(.maximized){
+  --win-w:900px!important;
+  --win-h:680px!important;
+}
+
+.workout-app{
+  height:100%;
+  display:grid;
+  align-content:start;
+  gap:16px;
+}
+
+.workout-hero{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:16px;
+  padding:22px;
+  border-radius:30px;
+  background:radial-gradient(circle at 15% 15%,rgba(255,159,10,.24),transparent 40%),linear-gradient(135deg,rgba(255,255,255,.09),rgba(255,255,255,.03));
+  border:1px solid var(--akaora-line);
+}
+
+.workout-hero strong{
+  display:block;
+  font-size:34px;
+  letter-spacing:-.05em;
+  margin-top:4px;
+}
+
+.workout-badge{
+  width:82px;
+  height:82px;
+  border-radius:26px;
+  display:grid;
+  place-items:center;
+  font-size:28px;
+  font-weight:950;
+  background:linear-gradient(135deg,#ff3b30,#ff9f0a);
+  box-shadow:0 20px 50px rgba(255,100,40,.24);
+}
+
+.workout-controls{
+  display:grid;
+  grid-template-columns:1fr 1fr 120px auto;
+  gap:10px;
+}
+
+.workout-grid{
+  display:grid;
+  grid-template-columns:1.4fr .8fr;
+  gap:14px;
+  min-height:0;
+}
+
+.workout-plan{
+  display:grid;
+  gap:10px;
+  overflow:auto;
+  max-height:360px;
+}
+
+.exercise-card{
+  display:grid;
+  grid-template-columns:48px 1fr;
+  gap:12px;
+  align-items:center;
+  padding:12px;
+  border-radius:18px;
+  background:rgba(255,255,255,.045);
+  border:1px solid var(--akaora-line);
+}
+
+.exercise-card b{
+  width:38px;
+  height:38px;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+  background:rgba(255,159,10,.16);
+}
+
+.workout-coach{
+  padding:16px;
+  border-radius:24px;
+  background:rgba(255,255,255,.045);
+  border:1px solid var(--akaora-line);
+  display:grid;
+  align-content:start;
+  gap:12px;
+}
+
+#workoutTimer{
+  font-size:36px;
+  letter-spacing:-.06em;
+}
+
+@media(max-width:800px){
+  .water-hero,
+  .workout-grid,
+  .workout-controls,
+  .water-settings{
+    grid-template-columns:1fr;
+  }
+  .water-actions{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+/* ===== Ultimate Build Styling ===== */
+.dock-item{width:62px!important;min-width:62px!important;min-height:66px!important}
+.dock-item i{width:46px!important;height:46px!important}
+.dock-item span{font-size:9px!important}
+.app-window[data-app-window="ultimate"]:not(.maximized),
+.app-window[data-app-window="appstore"]:not(.maximized){--win-w:1080px!important;--win-h:720px!important}
+.ultimate-hub{display:grid;gap:18px}
+.ultimate-section{padding:16px;border-radius:24px;background:rgba(255,255,255,.045);border:1px solid var(--akaora-line)}
+.ultimate-section h3{margin:0 0 12px}
+.ultimate-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:14px}
+.ultimate-grid button{min-height:118px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center}
+.ultimate-grid img{width:58px;height:58px;border-radius:18px}
+.ultimate-grid span{font-size:12px;font-weight:900}
+.ultimate-app{height:100%;display:grid;align-content:start;gap:14px}
+.hero-card{padding:22px;border-radius:28px;background:radial-gradient(circle at 15% 10%,rgba(10,132,255,.18),transparent 40%),linear-gradient(135deg,rgba(255,255,255,.08),rgba(255,255,255,.03));border:1px solid var(--akaora-line)}
+.hero-card h2{margin:0 0 6px;font-size:32px;letter-spacing:-.06em}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px}
+.pro-list{display:grid;gap:10px;overflow:auto}
+.list-item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;border-radius:18px;background:rgba(255,255,255,.045);border:1px solid var(--akaora-line)}
+.analytics-grid,.control-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.stat-card{padding:18px;border-radius:22px;background:rgba(255,255,255,.045);border:1px solid var(--akaora-line)}
+.stat-card strong{font-size:38px;display:block}
+.result-box,.image-mock{min-height:90px;padding:14px;border-radius:18px;background:rgba(255,255,255,.045);border:1px solid var(--akaora-line);white-space:pre-wrap}
+textarea{min-height:150px}
+#pdfAiViewer{width:100%;height:260px;border:0;border-radius:18px;background:#fff}
+#screenshotCanvas,#wallCanvas{max-width:100%;border-radius:20px;border:1px solid var(--akaora-line)}
+.lock-screen-app{height:100%;display:grid;place-items:center;align-content:center;text-align:center;background:radial-gradient(circle at 50% 20%,rgba(10,132,255,.22),transparent 40%)}
+.lock-screen-app h1{font-size:70px;letter-spacing:-.08em;margin:0}
+.files-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
+.file-card{padding:16px;border-radius:20px;background:rgba(255,255,255,.045);border:1px solid var(--akaora-line)}
+@media(max-width:800px){.analytics-grid,.control-grid{grid-template-columns:1fr}.ultimate-grid{grid-template-columns:repeat(2,1fr)}.dock-item{width:52px!important;min-width:52px!important}.dock-item span{display:none!important}}
+
+
+/* ===== Akaora OS v3 Core Polish ===== */
+.top-pill{
+  min-width:32px!important;
+  height:28px!important;
+  padding:0 8px!important;
+  border-radius:999px!important;
+  display:grid!important;
+  place-items:center!important;
+  background:rgba(255,255,255,.06)!important;
+}
+
+.app-window{
+  transition:
+    box-shadow .12s ease,
+    transform .12s ease,
+    border-color .12s ease!important;
+}
+
+.app-window.active-window{
+  border-color:rgba(100,210,255,.36)!important;
+  box-shadow:
+    0 30px 90px rgba(0,0,0,.45),
+    0 0 0 1px rgba(100,210,255,.18)!important;
+}
+
+.snap-preview{
+  position:fixed;
+  z-index:999998;
+  pointer-events:none;
+  border-radius:24px;
+  background:rgba(10,132,255,.16);
+  border:1px solid rgba(100,210,255,.45);
+  backdrop-filter:blur(10px);
+  display:none;
+}
+
+.os-command-palette{
+  position:fixed;
+  top:84px;
+  left:50%;
+  transform:translateX(-50%);
+  width:min(680px, calc(100vw - 28px));
+  z-index:9999999;
+  padding:14px;
+  border-radius:26px;
+  background:rgba(14,16,22,.94);
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:0 30px 120px rgba(0,0,0,.55);
+  backdrop-filter:blur(24px);
+  display:none;
+}
+
+.os-command-palette.active{
+  display:grid;
+  gap:12px;
+}
+
+.os-command-palette input{
+  height:48px;
+  border-radius:16px;
+  padding:0 16px;
+  font-size:16px;
+}
+
+.command-results{
+  max-height:420px;
+  overflow:auto;
+  display:grid;
+  gap:8px;
+}
+
+.command-results button{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  gap:12px!important;
+  min-height:54px!important;
+}
+
+.command-results img{
+  width:34px;
+  height:34px;
+  border-radius:10px;
+}
+
+.notification-drawer,
+.control-drawer{
+  position:fixed;
+  right:18px;
+  top:54px;
+  width:min(380px, calc(100vw - 28px));
+  max-height:calc(100vh - 90px);
+  overflow:auto;
+  z-index:9999998;
+  padding:16px;
+  border-radius:28px;
+  background:rgba(14,16,22,.94);
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:0 30px 100px rgba(0,0,0,.45);
+  backdrop-filter:blur(24px);
+  display:none;
+}
+
+.notification-drawer.active,
+.control-drawer.active{
+  display:grid;
+  gap:12px;
+}
+
+.drawer-card{
+  padding:14px;
+  border-radius:18px;
+  background:rgba(255,255,255,.055);
+  border:1px solid rgba(255,255,255,.08);
+}
+
+.control-grid-v3{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.control-grid-v3 button{
+  min-height:58px!important;
+}
+
+body.focus-mode-active .widget,
+body.focus-mode-active .dock{
+  opacity:.35;
+}
+
+body.focus-mode-active .app-window.active-window{
+  opacity:1;
+}
+
+body.reduce-motion *,
+body.reduce-motion *::before,
+body.reduce-motion *::after{
+  animation:none!important;
+  transition:none!important;
+}
+
+body.light-theme .os-command-palette,
+body.light-theme .notification-drawer,
+body.light-theme .control-drawer{
+  background:rgba(255,255,255,.94)!important;
+  color:#111318!important;
+  border-color:rgba(0,0,0,.12)!important;
+}
+
+body.light-theme .drawer-card{
+  background:rgba(0,0,0,.045)!important;
+  border-color:rgba(0,0,0,.12)!important;
+}
+
+@media(max-width:760px){
+  .notification-drawer,
+  .control-drawer{
+    left:12px;
+    right:12px;
+    width:auto;
+  }
+}

@@ -1,2 +1,15 @@
-# akaoraos
-**Akaora ProductivityOS** is an all-in-one platform for managing tasks, notes, calendars, documents, goals, and daily workflows. It helps users stay organised, focused, and productive from one connected workspace.
+# Akaora OS v3 Core
+
+Built from Akaora OS Ultimate and upgraded with:
+- Command palette / Spotlight using Ctrl+K
+- Notification drawer
+- Control Center
+- Window snapping
+- Workspace layout saving
+- Active window visual state
+- Focus Mode
+- Reduce Motion
+- Better system-level stability
+- Larger dock icons retained
+
+Syntax check: OK

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' blob: data:; img-src 'self' blob: data:; media-src 'self' blob: data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline';">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Akaora OS</title>
+  <link rel="icon" type="image/png" href="assets/icon.png" />
+  <link rel="stylesheet" href="src/styles.css" />
+</head>
+<body>
+  <div id="boot" class="boot">
+    <img src="assets/launch.png" alt="Akaora OS" />
+    <h1>Akaora OS</h1>
+    <p>Launching workspace...</p>
+  </div>
+
+  <div id="os" class="os hidden">
+    <header class="menubar">
+      <div class="menu-left">
+        <button id="forceQuitBtn" class="akaora-top-btn"><img src="assets/launch.png" alt="">Akaora OS</button>
+        <button class="menu-action" data-menu="file">File</button>
+        <button class="menu-action" data-menu="edit">Edit</button>
+        <button class="menu-action" data-menu="view">View</button>
+        <button class="menu-action" data-menu="window">Window</button>
+        <button class="menu-action" data-menu="help">Help</button>
+      </div>
+      <div class="menu-right"><button id="quickSpotlight" class="top-pill">⌕</button><button id="quickNotificationCenter" class="top-pill">🔔</button><button id="quickControlCenter" class="top-pill">⚙</button>
+        <span id="menuDate"></span>
+        <strong id="menuClock">00:00:00</strong>
+      </div>
+    </header>
+
+    <div id="topMenuLayer" class="top-menu-layer"></div>
+
+    <main id="desktop" class="desktop">
+      <section class="widgets" id="desktopWidgets">
+        <div class="widget clock-widget" data-widget="clock">
+          <div class="clock-face"></div>
+          <div>
+            <span class="widget-kicker">AKAORA TIME</span>
+            <strong id="centerDesktopClock">00:00:00</strong>
+            <p id="widgetDate">Today</p>
+          </div>
+        </div>
+        <div class="widget focus-widget" data-widget="focus">
+          <div class="widget-title">Focus Mode</div>
+          <div class="focus-row"><div class="focus-ring"></div><div><strong id="miniFocus">25:00</strong><p id="focusModeName">Pomodoro</p></div><button data-widget-app="focus">▶</button></div>
+        </div>
+        <div class="widget" data-widget="water">
+          <div class="widget-title"><span>Water</span><b>💧</b></div>
+          <div class="water-mini"><div class="glass-mini"><i id="waterMiniFill"></i></div><p><strong id="waterWidgetQty">0ml</strong> / <span id="waterWidgetGoal">3000ml</span></p></div>
+        </div>
+      </section>
+
+      <div id="windowLayer" class="window-layer"></div>
+    </main>
+
+    <nav class="dock" id="dock">
+      <button data-app="launch" class="dock-item"><i><img src="assets/launch.png"></i><span>Launch</span></button>
+      <button data-app="todo" class="dock-item"><i><img src="assets/todo.png"></i><span>Todo</span></button>
+      <button data-app="focus" class="dock-item"><i><img src="assets/focus.png"></i><span>Focus</span></button>
+      <button data-app="water" class="dock-item"><i><img src="assets/water.png"></i><span>Water</span></button>
+      <button data-app="workout" class="dock-item"><i><img src="assets/workout.png"></i><span>Workout</span></button>
+      <button data-app="study" class="dock-item"><i><img src="assets/study.png"></i><span>Study</span></button>
+      <button data-app="notepad" class="dock-item"><i><img src="assets/notepad.png"></i><span>Notes</span></button>
+      <button data-app="paint" class="dock-item"><i><img src="assets/paint.png"></i><span>Paint</span></button>
+      <button data-app="assistant" class="dock-item"><i><img src="assets/assistant.png"></i><span>AI</span></button>
+      <button data-app="aimode" class="dock-item"><i><img src="assets/assistant.png"></i><span>Mind</span></button>
+      <button data-app="imagestudio" class="dock-item"><i><img src="assets/imagestudio.png"></i><span>Image</span></button>
+      <button data-app="clockapp" class="dock-item"><i><img src="assets/clockapp.png"></i><span>Clock</span></button>
+      <button data-app="weather" class="dock-item"><i><img src="assets/weather.png"></i><span>Weather</span></button>
+      <button data-app="calculator" class="dock-item"><i><img src="assets/calculator.png"></i><span>Calc</span></button>
+      <button data-app="quicktools" class="dock-item"><i><img src="assets/quicktools.png"></i><span>Tools</span></button>
+      <button data-app="ultimate" class="dock-item"><i><img src="assets/appstore.png"></i><span>Ultimate</span></button>
+      <button data-app="settings" class="dock-item"><i><img src="assets/settings.png"></i><span>Settings</span></button>
+    </nav>
+  </div>
+
+  <audio id="bootSound" src="assets/boot-sound.wav" preload="auto"></audio>
+  <script src="src/app.js"></script>
+</body>
+</html>

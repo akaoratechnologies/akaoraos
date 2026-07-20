@@ -1,0 +1,11 @@
+GitHub-ready project
+
+Do not upload node_modules or dist.
+After downloading or cloning the project, run:
+
+1. npm install
+2. npm start
+
+To create the Windows installer:
+
+npm run build
